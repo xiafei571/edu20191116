@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--命名空间应该是对应接口的包名+接口名 -->
+<mapper namespace="edu20191116.day1.dao.mapper.UserMapper">
+	<resultMap type="edu20191116.day1.vo.UserInfo"
+		id="userResultMap">
+		<id property="uid" column="uid" />
+		<result property="loginId" column="loginId" />
+		<result property="userName" column="uname" />
+		<result property="password" column="password" />
+		<result property="email" column="email" />
+		<result property="phone" column="phone" />
+		<result property="valid" column="valid" />
+		<result property="gmt_create" column="gmt_create" />
+		<result property="gmt_modified" column="gmt_modified" />
+	</resultMap>
+
+	<select id="getRoles" parameterType="String" resultType="String">
+		select r.role from sys_users u 
+		left join sys_users_roles ur on u.uid=ur.uid 
+		left join sys_roles r on ur.rid = r.rid 
+		where u.loginId = #{loginId}
+	</select>
+
+	<select id="getPermissions" parameterType="String"
+		resultType="String">
+		select p.permission from sys_users u 
+		left join sys_users_roles r on u.uid = r.uid 
+		left join sys_roles_permissions rp on r.rid = rp.rid 
+		left join sys_permissions p on rp.pid = p.pid 
+		where u.loginId = #{loginId}
+	</select>
+</mapper>
