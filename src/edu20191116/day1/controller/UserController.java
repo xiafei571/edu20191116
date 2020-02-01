@@ -7,11 +7,14 @@ import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import edu20191116.common.MD5Util;
 import edu20191116.day1.vo.LoginInfo;
+import edu20191116.day1.vo.UserInfo;
+import edu20191116.day1.vo.UserOnOff;
 
 @Controller
 @RequestMapping("/")
@@ -50,8 +53,9 @@ public class UserController {
 		// 获取当前登录用户
 		Subject subject = SecurityUtils.getSubject();
 		String msg = "未登录";
-		if (null != subject.getPrincipal())
+		if (null != subject.getPrincipal()) {
 			msg = "欢迎：" + subject.getPrincipal();
+		}
 		modelMap.put("msg", msg);
 		return "index";
 	}
@@ -62,5 +66,13 @@ public class UserController {
 		subject.logout();
 		// 重定向到登录页面的跳转方法
 		return "redirect:login";
+	}
+
+	@RequestMapping(value = "/user/{loginId}", method = RequestMethod.GET)
+	public String userProfile(@PathVariable String loginId, ModelMap modelMap) {
+		UserInfo user = new UserInfo();
+		user.setOnOff(3);
+		modelMap.put("user", user);
+		return "user_profile";
 	}
 }
