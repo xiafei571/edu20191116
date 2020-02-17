@@ -13,12 +13,14 @@
 <meta charset="UTF-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>首页</title>
+<title>用户信息</title>
 </head>
 <body>
 
 	<div class="container">
+	    <h4>${user.userName}</h4>
 		<h4>${user.onOff}</h4>
+		
 		<div class="form-check" id="onOff-check">
 			<input class="form-check-input" type="checkbox" 
 				id="defaultCheck1"> <label class="form-check-label"
@@ -54,10 +56,8 @@
 	<script type="text/javascript">
 		window.onload = function() {
 			var onOff = parseInt("${user.onOff}").toString(2);
-			console.log(onOff);
 			var array = onOff.split("");
 			var inputArray = $('#onOff-check>input');
-			console.log(inputArray.length);
 			for (var i = 0; i < array.length; i++) {
 				if (array[i] == 1) {
 					if (null != inputArray[i]) {

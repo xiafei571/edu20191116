@@ -5,6 +5,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import edu20191116.common.MD5Util;
+import edu20191116.day1.service.UserService;
 import edu20191116.day1.vo.LoginInfo;
 import edu20191116.day1.vo.UserInfo;
 import edu20191116.day1.vo.UserOnOff;
@@ -19,6 +21,8 @@ import edu20191116.day1.vo.UserOnOff;
 @Controller
 @RequestMapping("/")
 public class UserController {
+	@Autowired
+	private UserService userService;
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login(ModelMap modelMap) {
@@ -70,8 +74,7 @@ public class UserController {
 
 	@RequestMapping(value = "/user/{loginId}", method = RequestMethod.GET)
 	public String userProfile(@PathVariable String loginId, ModelMap modelMap) {
-		UserInfo user = new UserInfo();
-		user.setOnOff(3);
+		UserInfo user = userService.getUserByLoginId(loginId);
 		modelMap.put("user", user);
 		return "user_profile";
 	}

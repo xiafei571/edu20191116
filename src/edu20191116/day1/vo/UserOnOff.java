@@ -30,9 +30,9 @@ public class UserOnOff {
 	public void switchOptionsNotifypraise() {
 		if (isOptionsNotifypraise()) {
 			this.value = ~OPTIONS_NOTIFYPRAISE & value;
+		} else {
+			this.value = value | OPTIONS_NOTIFYPRAISE;
 		}
-		this.value = value | OPTIONS_NOTIFYPRAISE;
-
 	}
 
 	public boolean isOptionsNotifypraise() {
@@ -42,9 +42,9 @@ public class UserOnOff {
 	public void switchOptionsNotifycomment() {
 		if (isOptionsNotifycomment()) {
 			this.value = ~OPTIONS_NOTIFYCOMMENT & value;
+		} else {
+			this.value = value | OPTIONS_NOTIFYCOMMENT;
 		}
-
-		this.value = value | OPTIONS_NOTIFYCOMMENT;
 	}
 
 	public boolean isOptionsNotifycomment() {
@@ -54,9 +54,9 @@ public class UserOnOff {
 	public void switchOptionsNotifyforward() {
 		if (isOptionsNotifyforward()) {
 			this.value = ~OPTIONS_NOTIFYFORWARD & value;
+		} else {
+			this.value = value | OPTIONS_NOTIFYFORWARD;
 		}
-
-		this.value = value | OPTIONS_NOTIFYFORWARD;
 	}
 
 	public boolean isOptionsNotifyforward() {
@@ -66,9 +66,9 @@ public class UserOnOff {
 	public void switchOptionsNotifyat() {
 		if (isOptionsNotifyat()) {
 			this.value = ~OPTIONS_NOTIFYAT & value;
+		} else {
+			this.value = value | OPTIONS_NOTIFYAT;
 		}
-
-		this.value = value | OPTIONS_NOTIFYAT;
 	}
 
 	public boolean isOptionsNotifyat() {
@@ -78,9 +78,9 @@ public class UserOnOff {
 	public void switchOptionsFollowing() {
 		if (isOptionsFollowing()) {
 			this.value = ~OPTIONS_FOLLOWING & value;
+		} else {
+			this.value = value | OPTIONS_FOLLOWING;
 		}
-
-		this.value = value | OPTIONS_FOLLOWING;
 	}
 
 	public boolean isOptionsFollowing() {
@@ -90,9 +90,9 @@ public class UserOnOff {
 	public void switchOptionsNotifysystem() {
 		if (isOptionsNotifysystem()) {
 			this.value = ~OPTIONS_NOTIFYSYSTEM & value;
+		} else {
+			this.value = value | OPTIONS_NOTIFYSYSTEM;
 		}
-
-		this.value = value | OPTIONS_NOTIFYSYSTEM;
 	}
 
 	public boolean isOptionsNotifysystem() {
@@ -100,6 +100,6 @@ public class UserOnOff {
 	}
 
 	public static void main(String[] args) {
-		System.out.println(OPTIONS_NOTIFYFORWARD);
+		System.out.println(OPTIONS_NOTIFYPRAISE | OPTIONS_NOTIFYCOMMENT | OPTIONS_NOTIFYFORWARD);
 	}
 }

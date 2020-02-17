@@ -13,6 +13,7 @@
 		<result property="valid" column="valid" />
 		<result property="gmt_create" column="gmt_create" />
 		<result property="gmt_modified" column="gmt_modified" />
+		<result property="onOff" column="onOff" />
 	</resultMap>
 
 	<select id="getRoles" parameterType="String" resultType="String">
